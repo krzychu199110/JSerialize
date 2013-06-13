@@ -10,7 +10,7 @@ import exesoft.JSerializeWriterImpl;
 import exesoft.Osoba;
 import exesoft.Rodzina;
 
-public class CopyOfJModelImplTestE extends TestCase {
+public class JModelImplTestE extends TestCase {
 
 	public String encodeM;
 
@@ -40,7 +40,7 @@ public class CopyOfJModelImplTestE extends TestCase {
 	@Test
 	public void testJModelImpl() throws Exception {
 
-		// System.out.println(testString);
+		 System.out.println(testString);
 
 	}
 
