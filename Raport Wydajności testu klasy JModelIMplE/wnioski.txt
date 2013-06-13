@@ -1,0 +1,5 @@
+
+Raport wydajnoœci testu klasy JModelIMplE zosta³ wygenerowany przy pomocy programu JMeter. 
+Przetestowane zosta³y 4 metody - testencodePairOfBracket, testencodeCloseBracket, testencodeOpenBracket, testJModellmpl
+Operacje dla ka¿dej z nich przeprowadzane by³y na grupie 100 w¹tków. Raport nie wykaza³ obecnoœci b³êdów 
+Odchylenie standardowe wynios³o 0,1, a przepustowoœæ 14,8/sec. 
