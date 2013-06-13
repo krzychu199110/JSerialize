@@ -14,7 +14,7 @@ import java.util.Map.Entry;
  */
 public class JModelImpl implements JModel {
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public String encode(final Map<String, Object> toJson)
 			throws ClassCastException {
@@ -37,7 +37,7 @@ public class JModelImpl implements JModel {
 			} else if (pairs.getValue() instanceof Map) {
 				bufferJson.append(getName((String) pairs.getKey()));
 				bufferJson.append(": {");
-				bufferJson.append(handleMap((Map<String, Object>) pairs
+				bufferJson.append(handleMap((Map) pairs
 						.getValue()));
 
 			} else {
@@ -69,7 +69,7 @@ public class JModelImpl implements JModel {
 		return bufferJson.toString();
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private String handleList(List list) {
 
 		StringBuffer bufferJson = new StringBuffer();
@@ -86,7 +86,7 @@ public class JModelImpl implements JModel {
 		} else if (list.get(0) instanceof Map) {
 			bufferJson.append(":[ ");
 			for (int i = 0; i < list.size(); i++) {
-				bufferJson.append(handleMap((Map<String, Object>) list.get(i)));
+				bufferJson.append(handleMap((Map) list.get(i)));
 				if (i < list.size() - 1){
 					bufferJson.append(", ");
 				}
@@ -106,7 +106,7 @@ public class JModelImpl implements JModel {
 		return bufferJson.toString();
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private String handleMap(Map<String, Object> mapaIn) {
 
 		StringBuffer bufferJson = new StringBuffer();
@@ -124,7 +124,7 @@ public class JModelImpl implements JModel {
 			} else if (pairs.getValue() instanceof Map) {
 				bufferJson.append(getName((String) pairs.getKey()));
 				bufferJson.append(": {");
-				bufferJson.append(handleMap((Map<String, Object>) pairs
+				bufferJson.append(handleMap((Map) pairs
 						.getValue()));
 
 			} else {
