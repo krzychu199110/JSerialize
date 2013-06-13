@@ -1,6 +1,9 @@
-package exesoft;
+package tests;
 
 import java.sql.PreparedStatement;
+
+import exesoft.JModelImpl;
+import exesoft.JSerializeWriterImpl;
 
 public class Test {
 

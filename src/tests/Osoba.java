@@ -1,4 +1,4 @@
-package exesoft;
+package tests;
 
 public class Osoba {
 	public Osoba(String name, int age, int id) {
