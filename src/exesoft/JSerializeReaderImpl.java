@@ -26,7 +26,7 @@ import java.util.Set;
 public class JSerializeReaderImpl implements JSerializeReader {
  
         /**
-         * Helper class for holding fields data
+         * 
          *
          * @author Micha³
          *
@@ -146,8 +146,8 @@ public class JSerializeReaderImpl implements JSerializeReader {
         /**
          * 
          *
-         * (non-Javadoc)
-         *
+         * (non-Javadoc).
+         *@param map
          * @see exesoft.JSerializeReader#fromMap(java.util.Map)
          */
         @Override
