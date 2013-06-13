@@ -1,0 +1,49 @@
+~~~_______________________________________~~~
+    Przeprowadzony raport metryk z dnia
+08.06.2013 nie wykazal wartosci znacznie 
+odbiegajacych od nalezacych do zalecanego
+z zalozenia zakresu, okreslajacego 
+ramy, w ktorych powinny sie miescic 
+wyniki obliczonych metryk. Wyjatkiem 
+jest tu wartosc Cyklomatycznej Zlozonosci 
+McCabe'a okreslajacej poziom skomplikowania 
+(ilosc niezaleznych sciezek przebiegu 
+danego programu) metody createObject w 
+klasie JSerializeReaderImpl. Metryka ta 
+wynosi 12, nieznacznie przekraczajac 
+maksymalna wartosc, za ktora uwazany jest 
+wynik 10.
+    Srednia liczba atrybutow wynosi 2,25
+(wartosci wahaja sie w granicach od 0 do 
+5 - razem 9 atrybutow) co wskazuje na 
+prawidlowa dekompozycje klas.
+    Glebokosc zagniezdzenia blokow kodu
+(metryka Nested Block Depth) poszczegolnych
+metod nie przekracza wartosci optymalnej
+rownej 5. Dozwolona wartosc maksymalna 
+osiagnela jedynie metoda decodeHashMapKeys. 
+W innych przypadkach sredni wynik to 1,594.
+Wyniki te swiadcza o dostatecznym, nie
+przekraczajacym normy, skomplikowaniu kodu
+metod.
+    Na poszczegolne implementacje srednio
+przypada 7 metod. Najwiecej (11) metod 
+posiada posiada implementacja 
+JSerializeWriterImpl. Wartosci nie 
+przekraczaja zalecanej ilosci, przypadajacej
+na okreslony zakres (zalecane - 20).
+    Metryka Usrednione Metody na Klase 
+(Weighted Methods per Class) mowiaca o 
+zlozonosci poszczegolnych klas miesci sie w 
+optymalnych granicach 0-100.
+    Metody posiadaja calosciowo 318 linii
+kodu. Srednio na pojedyncza metode przypada
+w przyblizeniu 10 linii.
+    Metryki liczb parametrow metod wahaja sie
+w przedziale od 0 do 3. Maksymalna zalecana
+wartosc to 5.
+    Projekt sklada sie z 4 klas, 28 metod, 1 
+pakietu, 3 interface'ow.
+    Laczna suma linii kodu projektu 
+wynosi 467.
+~~~_______________________________________~~~
