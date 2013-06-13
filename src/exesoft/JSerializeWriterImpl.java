@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.Boolean;
+import java.math.BigDecimal;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,6 +46,11 @@ private JModel parses = new JModelImpl();
 				"root,parent,right,left,key,value");
 		fieldsToConsider.put(HashSet.class.getName(), "map");
 		fieldsToConsider.put(Integer.class.getName(), "value");
+		fieldsToConsider.put(Character.class.getName(), "value");
+		fieldsToConsider.put(Double.class.getName(), "value");
+		fieldsToConsider.put(Float.class.getName(), "value");
+		fieldsToConsider.put(BigDecimal.class.getName(), "intVal");
+		
 
 		// fieldsToConsider.put(LinkedList.class.getName()+"#Node",
 		// "first,next,prev");
