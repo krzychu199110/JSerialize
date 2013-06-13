@@ -17,11 +17,7 @@ import java.util.Map;
 import java.util.Set;
  
 /**
- * JSerializeReader - Klasa odpowiedzialna za odwzorowanie obiektu na podstawie
- * informacji uzyskanych z obiektu klasy JModel, ktra w procesie dekodowania
- * (metoda decode) wytworzy obiekt klasy String o strukturze jak w przyk³adzie.
- * String do przetworzenia w JModel :
- * java.lang.Osoba{imie(java.lang.String):x;nazwisko(java.lang.String):y;}
+ * 
  *
  * @author Micha³ Krakiewicz
  *
@@ -37,19 +33,12 @@ public class JSerializeReaderImpl implements JSerializeReader {
          */
         static class JSONElement {
  
-                /**
-                 * Stores field name.
-                 */
+               
                 private String name;
  
-                /**
-                 * Stores field type.
-                 */
                 private String type;
  
-                /**
-                 * Stores non-parsed inner objects.
-                 */
+                
                 private Object innerTypes;
  
                 /**
@@ -65,7 +54,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
                 }
  
                 /**
-                 * Get parsed object, or class member name.
+                 * 
                  *
                  * @return
                  */
@@ -74,7 +63,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
                 }
  
                 /**
-                 * Get string containing object type to be created.
+                 *
                  *
                  * @return
                  */
@@ -83,7 +72,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
                 }
  
                 /**
-                 * Set new object type to be created.
+                 * 
                  *
                  * @param newtype
                  */
@@ -92,7 +81,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
                 }
  
                 /**
-                 * Helper function to cast as Map<>.
+                 * 
                  *
                  * @return
                  */
@@ -101,7 +90,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
                 }
  
                 /**
-                 * Helper function to cast as List.
+                 * 
                  *
                  * @return
                  */
@@ -110,7 +99,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
                 }
  
                 /**
-                 * Helper function that returns supposed raw Map string (name#type)
+                 * 
                  *
                  * @return
                  */
@@ -119,7 +108,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
                 }
  
                 /**
-                 * Access inner object without casting.
+                 *
                  *
                  * @return
                  */
@@ -129,24 +118,17 @@ public class JSerializeReaderImpl implements JSerializeReader {
  
         }
  
-        /**
-         * class member holding the deserialized object
-         */
+       
         private Object deserializedObject;
  
-        /**
-         * object hash map
-         *
-         */
+      
         private Map<String, Object> objectHashMap;
  
-        /**
-         * Helper flag that, if true, produce debug messages
-         */
+        
         private static boolean debug = true;
  
         /**
-         * Helper method to output debug info if in debug mode.
+         * 
          *
          * @param msg
          */
@@ -158,13 +140,11 @@ public class JSerializeReaderImpl implements JSerializeReader {
  
         }
  
-        /**
-         * constant that defines map key containing main class type.
-         */
+       
         private static final String rootClassKey = "#JSerializeMetaData#RootClassName";
  
         /**
-         * Creates the object from hashmap using java reflection
+         * 
          *
          * (non-Javadoc)
          *
@@ -194,7 +174,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
  
         /**
          *
-         * Helper function that decodes List type Hashmaps...
+         * 
          *
          * @param encoded
          * @param field
@@ -236,33 +216,24 @@ public class JSerializeReaderImpl implements JSerializeReader {
  
                                         if (object != null) {
                                                 returnList.add(createObject(object));
-                                        // dbg("Decode list item: " + elem.getName());
+                                        
                                         }
                                 }
  
                         }
                 } catch (ClassNotFoundException e) {
-                        // TODO Auto-generated catch block
+                       
                         e.printStackTrace();
                 }
  
-                // for (JSONElement elem : elems) {
-                // try {
-                // Object obj = createObject(elem);
-                // returnList.add(obj);
-                // } catch (ClassNotFoundException e) {
-                // // TODO Auto-generated catch block
-                // e.printStackTrace();
-                // }
-                // dbg("Decode list item: " + elem.getName());
-                // }
+            
  
                 return returnList;
  
         }
  
         /**
-         * Helper function that converts List of type Integer to int[] array
+         * 
          *
          * @param list
          * @return
@@ -277,8 +248,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
         }
  
         /**
-         * Helper function that creates Object of type specified in JSONElement
-         * object
+         * 
          *
          * @param elem
          * @return
@@ -291,16 +261,14 @@ public class JSerializeReaderImpl implements JSerializeReader {
  
                         switch (elem.getType()) {
                         case "intArray":
-                                // return elem.getInner();
+                              
                                 int[] tmp = toIntArray((List<Integer>) elem.getInner());
                                 return Arrays.copyOf(tmp, tmp.length);
                         case "charArray":
                                 return elem.getInner();
                         case "0":
                                 return "0";
-                                // // case "java.lang.String":
-                                // // return
-                                //
+                               
  
                         }
  
@@ -324,13 +292,13 @@ public class JSerializeReaderImpl implements JSerializeReader {
                                 for (JSONElement jsonElement : members) {
                                         dbg("Deserializing member: " + jsonElement.getType() + " "
                                                         + jsonElement.getName());
-                                        // dbg("Member contents: " )
+                                       
                                         Field field = deserialized.getDeclaredField(jsonElement
                                                         .getName());
                                         field.setAccessible(true);
  
                                
-                                        // Object deser = createObject(jsonElement);
+                                        
  
                                         if (jsonElement.getType().equals(List.class.getName())) {
  
@@ -358,11 +326,9 @@ public class JSerializeReaderImpl implements JSerializeReader {
  
                                                 field.set(deserializedInstance, tmp);
                                                 dbg("else");
-                                                // ArrayList<JSONElement> inner =
-                                                // decodeHashMapKeys((Map<String, Object>) jsonElement
-                                                // .getInner());
+                                               
                                         }
-                                        // tmp.set(deserializedObject, );
+                                        
  
                                         dbg(" ");
  
@@ -379,16 +345,16 @@ public class JSerializeReaderImpl implements JSerializeReader {
                         throw new ClassNotFoundException("Class " + elem.getType()
                                         + "not found!\n");
                 } catch (NoSuchFieldException e) {
-                        // TODO Auto-generated catch block
+                       
                         e.printStackTrace();
                 } catch (SecurityException e) {
-                        // TODO Auto-generated catch block
+                        
                         e.printStackTrace();
                 } catch (InstantiationException e) {
-                        // TODO Auto-generated catch block
+                        
                         e.printStackTrace();
                 } catch (IllegalAccessException e) {
-                        // TODO Auto-generated catch block
+                       
                         e.printStackTrace();
                 }
  
@@ -397,7 +363,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
         }
  
         /**
-         * Reads the object from input stream.
+         * 
          *
          * @see exesoft.JSerializeReader#readObject(java.io.InputStream)
          */
@@ -405,18 +371,15 @@ public class JSerializeReaderImpl implements JSerializeReader {
         public Boolean readObject(final InputStream input) {
                 JModel parser = new JModelImpl();
  
-                /**
-                 * Convert InputStream to string:
-                 */
- 
-                // Create BufferedReader object
+               
+              
                 BufferedReader bReader = new BufferedReader(
                                 new InputStreamReader(input));
  
                 StringBuffer sbf = new StringBuffer();
                 String line = null;
  
-                // read line by line
+                
                 try {
                         while ((line = bReader.readLine()) != null) {
                                 sbf.append(line);
@@ -437,8 +400,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
         }
  
         /**
-         * Helper function that decodes Map into list of JSONElements. Inner
-         * elements are to be parsed further.
+         *
          *
          * @param map
          * @return
@@ -484,8 +446,7 @@ public class JSerializeReaderImpl implements JSerializeReader {
  
                         Object inner = map.get(full_string);
  
-                        // @SuppressWarnings("unchecked")
-                        // Map<String, Object> innerTypes = (Map<String, Object>) inner;
+                        
  
                         tmp.add(new JSONElement(name, type, inner));
  
