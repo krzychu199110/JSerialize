@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import exesoft.JModelImpl;
 import exesoft.JSerializeWriterImpl;
-import exesoft.Osoba;
-import exesoft.Rodzina;
 
 public class JModelImplTestE extends TestCase {
 
@@ -22,8 +20,9 @@ public class JModelImplTestE extends TestCase {
 	public void setUp() throws Exception {
 
 		testString = new String();
+		
 		Osoba tata = new Osoba("Karol", 30, 1);
-		Osoba mama = new Osoba("Jola", 30, 2);
+		Osoba mama = new Osoba("Jola",59,  2);
 
 		Rodzina rodzina = new Rodzina();
 
@@ -35,14 +34,7 @@ public class JModelImplTestE extends TestCase {
 
 		testString = jm.encode(js.prepareMap(rodzina));
 
-	}
-
-	@Test
-	public void testJModelImpl() throws Exception {
-
-		 System.out.println(testString);
-
-	}
+	}	
 
 	@Test
 	public void testJModelImplNotNull() throws Exception {
@@ -72,13 +64,6 @@ public class JModelImplTestE extends TestCase {
 		assertEquals("Poprawnie utworzone cudzyslowy", 0, x % 2);
 		assertEquals("Poprawnie utworzone apostrofy", 0, y % 2);
 
-	}
-
-	@Test
-	// nawias otwarcia
-	public void testencodeOpenString() throws Exception {
-		assertEquals('{', testString.charAt(0));
-		System.out.print(testString.getClass());
 	}
 
 	@Test
