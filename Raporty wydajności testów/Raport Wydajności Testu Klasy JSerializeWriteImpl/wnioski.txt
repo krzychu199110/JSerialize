@@ -1,0 +1,6 @@
+Raport testu klasy JSerializeWriterImpl nie wykaza³ ¿adnych b³êdów. 
+Przetestowane zosta³y metody : testObjectWithList, isRootNamePresent, testObjectWithTransientFields, testObjectWithPrimitives,
+testObjectWithPrivateFields, testObjectWithHashSet, testObjectWithTreeSet, testObjectWithPriorityQueue, testObjectWithAnotherObject,
+testObjectWithTreeMap.
+Przepustowoœæ wynios³a 3,3/sec, a odchylenie standardowe 1,5. 
+Liczba testowanych w¹tków ustawiona zosta³a na 50 na ka¿d¹ z metod. 
