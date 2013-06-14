@@ -37,16 +37,14 @@ public class JModelImpl implements JModel {
 			} else if (pairs.getValue() instanceof Map) {
 				bufferJson.append(getName((String) pairs.getKey()));
 				bufferJson.append(": {");
-				bufferJson.append(handleMap((Map) pairs
-						.getValue()));
+				bufferJson.append(handleMap((Map) pairs.getValue()));
 
 			} else {
 				if (!it.hasNext()) {
 					if (pairs.getKey().toString().contains("value")){
 						bufferJson.append(getName((String) pairs.getKey())
-								+ ": { " + pairs.getValue() + " "); 
-						}
-					
+								+ ": { " + pairs.getValue() + " ");
+					}
 					else{
 						bufferJson.append(getName((String) pairs.getKey())
 								+ ":" + pairs.getValue() + " ");
@@ -56,7 +54,7 @@ public class JModelImpl implements JModel {
 						bufferJson.append(getName((String) pairs.getKey())
 								+ ": { " + pairs.getValue() + ", ");
 					}
-					else {
+					else{
 						bufferJson.append(getName((String) pairs.getKey())
 								+ ":" + pairs.getValue() + ", ");
 					}
@@ -73,35 +71,34 @@ public class JModelImpl implements JModel {
 	private String handleList(List list) {
 
 		StringBuffer bufferJson = new StringBuffer();
-
+		
+		bufferJson.append(" ");
 		if (list.get(0) instanceof List) {
-			bufferJson.append(":[ ");
 			for (int i = 0; i < list.size(); i++) {
+				bufferJson.append("{");
 				bufferJson.append(handleList((List) list.get(i)));
+				bufferJson.append("}");
 				if (i < list.size() - 1){
 					bufferJson.append(", ");
 				}
 			}
-			bufferJson.append(" ],");
 		} else if (list.get(0) instanceof Map) {
-			bufferJson.append(":[ ");
 			for (int i = 0; i < list.size(); i++) {
+				bufferJson.append("{");
 				bufferJson.append(handleMap((Map) list.get(i)));
 				if (i < list.size() - 1){
 					bufferJson.append(", ");
 				}
 			}
-			bufferJson.append(" ],");
 		} else {
-			bufferJson.append(":[ ");
 			for (int i = 0; i < list.size(); i++) {
 				bufferJson.append(list.get(i));
 				if (i < list.size() - 1){
 					bufferJson.append(", ");
 				}
 			}
-			bufferJson.append(" ]");
 		}
+		bufferJson.append(" ]");
 
 		return bufferJson.toString();
 	}
@@ -115,35 +112,34 @@ public class JModelImpl implements JModel {
 		while (it.hasNext()) {
 			Map.Entry pairs = (Map.Entry) it.next();
 			if (pairs.getValue() instanceof List) {
-				bufferJson.append(getName((String) pairs.getKey()));
+				bufferJson.append(getName(pairs.getKey().toString()));
 				bufferJson.append(handleList((List) pairs.getValue()));
 				if (it.hasNext()){
 					bufferJson.append(", ");
 				}
 
 			} else if (pairs.getValue() instanceof Map) {
-				bufferJson.append(getName((String) pairs.getKey()));
+				bufferJson.append(getName(pairs.getKey().toString()));
 				bufferJson.append(": {");
-				bufferJson.append(handleMap((Map) pairs
-						.getValue()));
+				bufferJson.append(handleMap((Map) pairs.getValue()));
 
 			} else {
 				if (!it.hasNext()) {
 					if (pairs.getKey().toString().contains("value")){
-						bufferJson.append(getName((String) pairs.getKey())
+						bufferJson.append(getName(pairs.getKey().toString())
 								+ ": { " + pairs.getValue() + " ");
 					}
-					else {
+					else{
 						bufferJson.append(pairs.getKey() + ":"
 								+ pairs.getValue() + " ");
 					}
 				} else {
 					if (pairs.getKey().toString().contains("value")){
-						bufferJson.append(getName((String) pairs.getKey())
+						bufferJson.append(getName(pairs.getKey().toString())
 								+ ": { " + pairs.getValue() + ", ");
 					}
 					else{
-						bufferJson.append(getName((String) pairs.getKey())
+						bufferJson.append(getName(pairs.getKey().toString())
 								+ ":" + pairs.getValue() + ", ");
 					}
 				}
@@ -163,20 +159,19 @@ public class JModelImpl implements JModel {
 	}
 
 	private String getName(String str) {
-		String out = new String();
+		StringBuffer out = new StringBuffer();
 
 		boolean hash = true;
 		int i = 0;
 		while (hash) {
-			if (str.charAt(i) == '#'){
+			if (str.charAt(i) == '#') {
 				hash = false;
-			}
-			else{
-				out = out + str.charAt(i);
-			}
-			i++;
+			} else{
+				out.append(str.charAt(i));
+			
+			i++; }
 		}
 
-		return "\"" + out + "\"";
+		return "\"" + out.toString() + "\"";
 	}
 }
